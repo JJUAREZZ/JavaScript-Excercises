@@ -47,3 +47,7 @@ const total = dollars
     .reduce((acc, price) => acc + price, 0);
 
 console.log(total);
+
+// filter y reduce
+
+
