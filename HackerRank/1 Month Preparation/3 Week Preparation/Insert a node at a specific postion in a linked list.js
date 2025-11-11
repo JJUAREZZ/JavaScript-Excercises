@@ -24,3 +24,34 @@ The first line contains an integer , the number of elements in the linked list.
 Each of the next  lines contains an integer SinglyLinkedListNode[i].data.
 The next line contains an integer , the data of the node that is to be inserted.
 The last line contains an integer . */
+
+function insertNodeAtPosition(head, data, position) {
+    // Crear el nuevo nodo
+    const newNode = { data: data, next: null };
+
+    // Caso: insertar en la cabeza
+    if (position === 0) {
+        newNode.next = head;
+        return newNode;
+    }
+
+    // Recorrer hasta llegar al nodo anterior a la posicion deseada
+    let current = head;
+    let index = 0;
+
+    while (index < position - 1) {
+        current = current.next;
+        index++;
+    }
+
+    // Insertar el nuevo nodo
+    newNode.next = current.next;
+    current.next = newNode;
+
+    return head;
+}
+
+// Ejemplo de uso:
+let head = { data: 16, next: { data: 13, next: { data: 7, next: null } } };
+head = insertNodeAtPosition(head, 1, 2);
+console.log(JSON.stringify(head)); // Muestra la lista actualizada
