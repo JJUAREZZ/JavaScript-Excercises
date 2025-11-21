@@ -57,5 +57,5 @@ let input = `10
 1 60
 1 78
 2
-2`];
+2`;
 processData(input);
