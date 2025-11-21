@@ -20,3 +20,42 @@ It is guaranteed that a valid answer always exists for each query of type .
 Output Format
 
 For each query of type , print the value of the element at the front of the queue on a new line. */
+function processData(input) {
+    //Enter your code here
+    let data = input.split("\n");
+    let dataNum = data
+        .flatMap(str => str.split(' ')) // Separar cada cadena por espacios
+        .map(Number);
+    let iteration = dataNum[0]
+    let i = 1
+    let queue = []
+    
+    while(iteration > 0){
+        if(dataNum[i] === 1){
+            queue.push(dataNum[i+1])
+            i = i + 2
+        } else if(dataNum[i] === 2){
+            queue.shift()
+            i = i +1
+        } else if(dataNum[i] === 3){
+            console.log(queue[0])
+            i = i + 1 
+        }
+        iteration --
+    }
+    
+} 
+// Example usage:
+let input = `10
+1 42
+2  
+3
+1 14
+3
+1 28
+3
+1 60
+1 78
+2
+2`];
+processData(input);
