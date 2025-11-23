@@ -24,3 +24,37 @@ Input Format
 
 The first line contains a single integer , the number of strings.
 Each of the next  lines contains a single string , a sequence of brackets. */
+function isBalanced(s) {
+    // Write your code here
+    let stack = []
+    
+    for(let i = 0; i< s.length; i ++){
+        if(s[i] === "(" || s[i] === "[" || s[i] === "{"){
+            stack.push(s[i])
+        } else if(s[i] === ")"){
+            if(stack.length !== 0 && stack[stack.length - 1] === "("){
+                stack.pop()
+            } else {
+            return 'NO'
+        }
+        } else if(s[i] === "]"){
+            if(stack.length !== 0 && stack[stack.length - 1] === "["){
+                stack.pop()
+            } else {
+            return 'NO'
+        }
+        } else if(s[i] === "}"){
+            if(stack.length !== 0 && stack[stack.length - 1] === "{"){
+                stack.pop()
+            } else {
+            return 'NO'
+        }
+        } 
+    } 
+    
+    return (stack.length === 0) ? 'YES' : 'NO'  
+}
+// Example usage:
+console.log(isBalanced("{[()]}")); // Output: "YES"
+console.log(isBalanced("{[(])}")); // Output: "NO"
+console.log(isBalanced("{{[[(())]]}}")); // Output: "YES"   
