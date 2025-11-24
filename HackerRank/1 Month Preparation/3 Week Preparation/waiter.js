@@ -42,4 +42,69 @@ Returns
 
 int[n]: the numbers on the plates after processing*/
 
+function waiter(number, q) {
+    // Generate the first q primes
+    const primes = [];
+    let num = 2;
+    while (primes.length < q) {
+        if (isPrime(num)) primes.push(num);
+        num++;
+    }
+
+    let A = [...number]; // initial stack (top is the end)
+    let result = [];
+
+    for (let i = 0; i < q; i++) {
+        let prime = primes[i];
+
+        let nextA = []; // new A stack after filtering
+        let B = [];     // divisible plates stack
+
+        // Process A as a stack: pop from the end
+        while (A.length > 0) {
+            let plate = A.pop();
+
+            if (plate % prime === 0) {
+                B.push(plate); // goes to B_i
+            } else {
+                nextA.push(plate); // goes to A_(i+1)
+            }
+        }
+
+        // Add B plates to result in top-to-bottom order
+        while (B.length > 0) {
+            result.push(B.pop());
+        }
+
+        // Prepare for next iteration
+        A = nextA;
+    }
+
+    // Finally push remaining plates in A (top to bottom)
+    while (A.length > 0) {
+        result.push(A.pop());
+    }
+
+    // *** PRINT each element on its own line for the judge ***
+    result.forEach(x => console.log(x));
+
+    // return in case the platform expects the return value too
+    return result;
+}
+
+function isPrime(n) {
+    if (n < 2) return false;
+    for (let i = 2; i * i <= n; i++) {
+        if (n % i === 0) return false;
+    }
+    return true;
+}
+// Example usage:
+// waiter([3, 4, 7, 6, 5], 2);
+// Expected output:
+// 4
+// 6
+// 3
+// 7
+// 5
 
