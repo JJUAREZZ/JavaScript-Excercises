@@ -43,3 +43,24 @@ STDIN       Function
 Sample Output
 
 5 */
+function equalStacks(h1, h2, h3) {
+    const sum = arr => arr.reduce((a, b) => a + b, 0);
+    let sum1 = sum(h1);
+    let sum2 = sum(h2);
+    let sum3 = sum(h3);
+    let i = 0, j = 0, k = 0;
+    while (!(sum1 === sum2 && sum2 === sum3)) {
+        if (sum1 >= sum2 && sum1 >= sum3) {
+            sum1 -= h1[i];
+            i++;
+        } else if (sum2 >= sum1 && sum2 >= sum3) {
+            sum2 -= h2[j];
+            j++;
+        } else if (sum3 >= sum1 && sum3 >= sum2) {
+            sum3 -= h3[k];
+            k++;
+        }   
+    }
+    return sum1;
+}
+
